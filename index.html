@@ -10,14 +10,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Bricolage+Grotesque:opsz,wght@12..96,300..600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #f4efe6;
-    --cream-deep: #ece5d6;
-    --ink: #14110d;
-    --ink-soft: #2a2520;
-    --muted: #7a7268;
-    --rule: #d8cfbe;
-    --accent: #c8533a;
-    --accent-deep: #a23e29;
+    --cream: #f0f4eb;
+    --cream-deep: #e3e9db;
+    --ink: #1a2e0a;
+    --ink-soft: #2e4820;
+    --muted: #656565;
+    --rule: #c8d4bf;
+    --accent: #568725;
+    --accent-deep: #3e6318;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -69,6 +69,9 @@
   .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
 
   .brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
     font-family: 'Fraunces', serif;
     font-weight: 500;
     font-size: 22px;
@@ -79,6 +82,11 @@
     font-style: italic;
     color: var(--accent);
     font-weight: 400;
+  }
+  .brand-logo {
+    height: 38px;
+    width: auto;
+    flex-shrink: 0;
   }
 
   .nav-links {
@@ -424,7 +432,10 @@
 
 <nav id="nav">
   <div class="container nav-inner">
-    <div class="brand"><em>Guptill</em> Technology Services</div>
+    <div class="brand">
+      <img src="logo-mark.png" alt="Guptill Technology Services" class="brand-logo">
+      <em>Guptill</em> Technology Services
+    </div>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#approach">Approach</a></li>
