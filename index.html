@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guptill Technology Services — Microsoft 365, Business Central & Event Livestreaming</title>
+<meta name="description" content="Specialist IT consulting for Microsoft 365 deployments and Business Central ERP support. Plus livestreaming for running events under Runs of Anarchy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Bricolage+Grotesque:opsz,wght@12..96,300..600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f4efe6;
+    --cream-deep: #ece5d6;
+    --ink: #14110d;
+    --ink-soft: #2a2520;
+    --muted: #7a7268;
+    --rule: #d8cfbe;
+    --accent: #c8533a;
+    --accent-deep: #a23e29;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Subtle grain overlay for warmth */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0 0.05 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* Navigation */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: 22px 0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(244, 239, 230, 0.78);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  nav.scrolled { border-bottom-color: var(--rule); }
+
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 24;
+  }
+  .brand em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.005em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+  /* Hero */
+  .hero { padding: 180px 0 110px; position: relative; }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--muted);
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 380;
+    font-size: clamp(48px, 8.4vw, 124px);
+    line-height: 0.96;
+    letter-spacing: -0.03em;
+    font-variation-settings: "opsz" 144;
+    max-width: 15ch;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 360;
+    color: var(--accent);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+
+  .hero-meta {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+  }
+
+  .hero-desc {
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 44ch;
+  }
+
+  .hero-cta {
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    padding: 22px 36px;
+    border-radius: 100px;
+    font-size: 16px;
+    transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hero-cta:hover { background: var(--accent); transform: translateY(-2px); }
+  .hero-cta svg { transition: transform 0.3s ease; }
+  .hero-cta:hover svg { transform: translateX(4px); }
+
+  /* Section label */
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Services */
+  .services { padding: 100px 0; }
+
+  .services-header { margin-bottom: 90px; max-width: 960px; }
+  .services-header h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 350;
+    font-size: clamp(40px, 5.4vw, 72px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 96;
+  }
+  .services-header h2 em { font-style: italic; color: var(--accent); }
+
+  .service-block {
+    display: grid;
+    grid-template-columns: 90px 1fr 1.4fr;
+    gap: 40px;
+    padding: 60px 0;
+    border-top: 1px solid var(--rule);
+    align-items: start;
+  }
+  .service-block:last-child { border-bottom: 1px solid var(--rule); }
+
+  .service-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    padding-top: 10px;
+  }
+
+  .service-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(28px, 3vw, 38px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .service-body {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .service-list {
+    list-style: none;
+    margin-top: 28px;
+    columns: 2;
+    column-gap: 32px;
+  }
+  .service-list li {
+    padding: 9px 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+    border-top: 1px dashed var(--rule);
+    break-inside: avoid;
+  }
+
+  /* Runs of Anarchy sub-brand */
+  .ra-logo {
+    display: block;
+    width: 180px;
+    height: auto;
+    margin-bottom: 28px;
+    /* Logo is solid black on white — multiply blend tucks it into the cream background */
+    mix-blend-mode: multiply;
+  }
+  .service-subtitle {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 14px;
+    font-weight: 500;
+  }
+
+  /* Approach */
+  .approach {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 120px 0;
+    margin-top: 60px;
+    position: relative;
+  }
+  .approach .section-label { color: rgba(244, 239, 230, 0.55); border-color: rgba(244, 239, 230, 0.18); }
+
+  .approach-header h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 350;
+    font-size: clamp(36px, 4.6vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 22ch;
+    margin-bottom: 80px;
+  }
+  .approach-header em { font-style: italic; color: var(--accent); }
+
+  .principles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .principle {
+    padding: 32px 0 0;
+    border-top: 1px solid rgba(244, 239, 230, 0.2);
+  }
+  .principle-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+  .principle-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+  .principle-body {
+    font-size: 15px;
+    color: rgba(244, 239, 230, 0.72);
+    line-height: 1.55;
+  }
+
+  /* Contact */
+  .contact { padding: 140px 0 100px; }
+
+  .contact-inner { text-align: center; max-width: 960px; margin: 0 auto; }
+
+  .contact h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 350;
+    font-size: clamp(46px, 6.5vw, 88px);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+  }
+  .contact h2 em { font-style: italic; color: var(--accent); }
+
+  .contact-sub {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .contact-details {
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+    margin-top: 70px;
+    flex-wrap: wrap;
+  }
+
+  .contact-item { text-align: left; }
+
+  .contact-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .contact-value {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  a.contact-value:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Footer */
+  footer {
+    padding: 50px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  footer .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  /* Entry animations */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero .eyebrow { animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .hero h1 { animation: rise 1.1s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .hero-meta { animation: rise 1.1s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .container { padding: 0 22px; }
+    .nav-links { display: none; }
+    nav { padding: 18px 0; }
+    .hero { padding: 130px 0 70px; }
+    .hero-meta { grid-template-columns: 1fr; gap: 30px; align-items: start; margin-top: 50px; }
+    .hero-cta { justify-self: start; padding: 18px 28px; }
+    .services { padding: 70px 0; }
+    .services-header { margin-bottom: 50px; }
+    .service-block { grid-template-columns: 1fr; gap: 18px; padding: 40px 0; }
+    .service-num { padding-top: 0; }
+    .service-list { columns: 1; }
+    .approach { padding: 80px 0; }
+    .approach-header h2 { margin-bottom: 50px; }
+    .principles { grid-template-columns: 1fr; gap: 8px; }
+    .contact { padding: 90px 0 60px; }
+    .contact-details { flex-direction: column; align-items: center; gap: 36px; margin-top: 50px; }
+    .contact-item { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="container nav-inner">
+    <div class="brand"><em>Guptill</em> Technology Services</div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">IT Consulting · Microsoft Stack</div>
+    <h1><em>Specialists</em> in Microsoft 365 and Business Central.</h1>
+    <div class="hero-meta">
+      <p class="hero-desc">
+        We help organizations design, migrate, and operate Microsoft 365 environments — and provide hands-on ERP support for Dynamics 365 Business Central. We also livestream running events under our <a href="#runs-of-anarchy" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">Runs of Anarchy</a> banner.
+      </p>
+      <a href="#contact" class="hero-cta">
+        Start a conversation
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 7h17M12 1l6 6-6 6"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-label">
+      <span>§ 01 — Services</span>
+      <span>What we do</span>
+    </div>
+    <div class="services-header">
+      <h2>A focused practice, <em>not a tech generalist.</em></h2>
+    </div>
+
+    <div class="service-block">
+      <div class="service-num">[ 01 ]</div>
+      <div>
+        <div class="service-title">Microsoft 365<br>Deployment &amp; Management</div>
+      </div>
+      <div>
+        <p class="service-body">From greenfield rollouts to migrations off legacy systems — we plan, deploy, and operate Microsoft 365 environments end to end. Identity, security, collaboration, and the day-two operations that keep everything quietly working.</p>
+        <ul class="service-list">
+          <li>Tenant design &amp; migration</li>
+          <li>Entra ID &amp; Conditional Access</li>
+          <li>Intune device management</li>
+          <li>Exchange Online &amp; email security</li>
+          <li>SharePoint &amp; Teams architecture</li>
+          <li>Microsoft Purview compliance</li>
+          <li>License optimization</li>
+          <li>Ongoing managed support</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-block">
+      <div class="service-num">[ 02 ]</div>
+      <div>
+        <div class="service-title">Business Central<br>ERP Support</div>
+      </div>
+      <div>
+        <p class="service-body">Hands-on support for Microsoft Dynamics 365 Business Central — whether you're stabilizing an implementation, extending functionality, or onboarding new users. We work alongside finance and operations teams to make the ERP earn its keep.</p>
+        <ul class="service-list">
+          <li>Implementation support</li>
+          <li>Finance &amp; ledger configuration</li>
+          <li>Inventory &amp; supply chain setup</li>
+          <li>Custom workflows &amp; extensions</li>
+          <li>Power Platform integrations</li>
+          <li>Data migration &amp; cleanup</li>
+          <li>User training &amp; enablement</li>
+          <li>Issue troubleshooting</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-block" id="runs-of-anarchy">
+      <div class="service-num">[ 03 ]</div>
+      <div>
+        <img src="runs-of-anarchy-logo.jpg" alt="Runs of Anarchy logo" class="ra-logo">
+        <div class="service-title">Runs of Anarchy<span class="service-subtitle">Live event streaming</span></div>
+      </div>
+      <div>
+        <p class="service-body">A dedicated production arm for the running community. From local 5Ks to ultras, we bring the cameras, the streaming gear, and the on-the-ground know-how to put your race on screen, live — so participants, families, and sponsors don't miss a thing.</p>
+        <ul class="service-list">
+          <li>Multi-camera live production</li>
+          <li>Start, finish &amp; on-course coverage</li>
+          <li>Live commentary &amp; graphics</li>
+          <li>Multi-platform streaming</li>
+          <li>Race timing integration</li>
+          <li>Sponsor overlays &amp; lower-thirds</li>
+          <li>On-site production team</li>
+          <li>Post-event highlight edits</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="approach" id="approach">
+  <div class="container">
+    <div class="section-label">
+      <span style="color: rgba(244,239,230,0.6);">§ 02 — Approach</span>
+      <span style="color: rgba(244,239,230,0.6);">How we work</span>
+    </div>
+    <div class="approach-header">
+      <h2>Specialists who stay close to the work — <em>from kickoff to keep-the-lights-on.</em></h2>
+    </div>
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-num">— 01</div>
+        <div class="principle-title">Depth over breadth</div>
+        <p class="principle-body">We don't dabble. The Microsoft stack and live event production are what we live in — and that focus is what lets us move faster and avoid the avoidable mistakes.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">— 02</div>
+        <div class="principle-title">In the room with you</div>
+        <p class="principle-body">No layers between you and the engineer doing the work. Direct access, clear communication, and accountability that doesn't get diluted through account managers.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">— 03</div>
+        <div class="principle-title">Built to compound</div>
+        <p class="principle-body">Every deployment is shaped so it's easier to operate next quarter than this one. Documented, automated where it should be, and handed off cleanly when needed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-label">
+      <span>§ 03 — Contact</span>
+      <span>Get in touch</span>
+    </div>
+    <div class="contact-inner">
+      <h2>Let's talk about <em>your stack.</em></h2>
+      <p class="contact-sub">Whether you're planning a Microsoft 365 migration, untangling Business Central, or putting a race on the live stream — we'd be glad to hear what you're working on.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-label">Email</div>
+          <a href="mailto:hello@guptill.ca" class="contact-value">hello@guptill.ca</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Phone</div>
+          <a href="tel:+15195139090" class="contact-value">519 · 513 · 9090</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Based in</div>
+          <span class="contact-value">Waterloo, Ontario</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 Guptill Technology Services. All rights reserved.</div>
+    <div>Microsoft 365 · Business Central · Runs of Anarchy Livestreaming</div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  }, { passive: true });
+</script>
+
+</body>
+</html>
